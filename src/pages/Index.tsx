@@ -4,10 +4,12 @@ import { Search, ChefHat, Sparkles, Heart, Coffee, Utensils, Star, MapPin } from
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const { toast } = useToast();
 
   const moodSuggestions = [
     { icon: Coffee, text: "Cozy coffee date vibes", color: "text-warm-700" },
@@ -27,13 +29,40 @@ const Index = () => {
     if (!searchQuery.trim()) return;
     
     setIsSearching(true);
-    // TODO: Integrate with n8n webhook
     console.log("Searching for:", searchQuery);
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://yashrajsomvanshi.app.n8n.cloud/webhook-test/a4e42a34-3a22-4ed2-9b75-bc3f59a0c991', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          query: searchQuery,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Webhook response:', data);
+        toast({
+          title: "Search sent successfully!",
+          description: "We're finding the perfect places for you.",
+        });
+      } else {
+        throw new Error('Failed to send search request');
+      }
+    } catch (error) {
+      console.error('Error sending search request:', error);
+      toast({
+        title: "Search failed",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
       setIsSearching(false);
-    }, 2000);
+    }
   };
 
   return (
