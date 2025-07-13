@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Search, ChefHat, Sparkles, Heart, Coffee, Utensils, Star, MapPin, ExternalLink, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -53,10 +52,7 @@ const Index = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          location: "Bangalore", // Default location, could be made dynamic
-          cuisine: "", // Extract from query or leave empty
-          mood: [searchQuery], // Use the search query as mood
-          priority: ["rating", "reviews"], // Default priorities
+          query: searchQuery,
           timestamp: new Date().toISOString(),
         }),
       });
