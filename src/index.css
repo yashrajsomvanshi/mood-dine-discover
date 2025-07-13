@@ -50,6 +50,11 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Warm tones for the grid background */
+    --warm-50: 28 50% 98%;
+    --warm-100: 28 40% 95%;
+    --warm-200: 28 35% 90%;
   }
 
   .dark {
@@ -109,15 +114,15 @@ All colors MUST be HSL.
   }
   
   .gradient-warm {
-    background: linear-gradient(135deg, #f2e8e5 0%, #eaddd7 50%, #d2bab0 100%);
+    background: linear-gradient(135deg, hsl(28, 50%, 98%) 0%, hsl(28, 40%, 95%) 50%, hsl(28, 35%, 90%) 100%);
   }
   
   .gradient-sage {
-    background: linear-gradient(135deg, #f6f7f6 0%, #e3e8e1 50%, #c7d2c0 100%);
+    background: linear-gradient(135deg, hsl(120, 20%, 98%) 0%, hsl(120, 15%, 94%) 50%, hsl(120, 12%, 88%) 100%);
   }
   
   .text-gradient {
-    background: linear-gradient(135deg, #43302b 0%, #6b8659 100%);
+    background: linear-gradient(135deg, hsl(24, 30%, 25%) 0%, hsl(100, 20%, 45%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

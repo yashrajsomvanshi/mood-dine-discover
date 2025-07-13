@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Search, ChefHat, Sparkles, Heart, Coffee, Utensils, Star, MapPin, ExternalLink, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -127,13 +128,13 @@ const Index = () => {
                   </div>
                 )}
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-gray-500">Reddit score:</span>
-                    <span className="text-xs font-medium text-black">{result.redditScore}</span>
-                  </div>
-                  
-                  <div className="flex gap-2">
+                <div className="flex flex-col gap-3 pt-4 border-t border-gray-100">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs text-gray-500">Reddit score:</span>
+                      <span className="text-xs font-medium text-black">{result.redditScore}</span>
+                    </div>
+                    
                     {result.redditUrl && (
                       <a 
                         href={result.redditUrl} 
@@ -144,17 +145,25 @@ const Index = () => {
                         Reddit <ExternalLink className="h-3 w-3" />
                       </a>
                     )}
-                    {result.mapLink && (
+                  </div>
+                  
+                  {result.mapLink && (
+                    <Button
+                      asChild
+                      size="sm"
+                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                    >
                       <a 
                         href={result.mapLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1"
+                        className="flex items-center justify-center gap-2"
                       >
-                        Map <ExternalLink className="h-3 w-3" />
+                        <MapPin className="h-4 w-4" />
+                        View on Google Maps
                       </a>
-                    )}
-                  </div>
+                    </Button>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -165,19 +174,31 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-warm-50 relative">
+      {/* Grid Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-20"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(120, 83, 67, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(120, 83, 67, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '24px 24px'
+        }}
+      />
+      
       {/* Header */}
       <header className="relative z-10 px-6 py-6">
         <nav className="max-w-4xl mx-auto flex items-center justify-center">
           <div className="flex items-center space-x-2">
             <ChefHat className="h-6 w-6 text-black" />
-            <h1 className="text-xl font-semibold text-black">MoodDine.ai</h1>
+            <h1 className="text-xl font-semibold text-black">MoodDine</h1>
           </div>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <main className="px-6 py-8">
+      <main className="relative z-10 px-6 py-8">
         <div className="max-w-3xl mx-auto text-center">
           <div className="animate-fade-in">
             <h2 className="text-3xl md:text-4xl font-normal text-black mb-4 leading-tight">
@@ -185,9 +206,9 @@ const Index = () => {
               <span className="block mt-1">match your mood</span>
             </h2>
             
-            <p className="text-base text-gray-700 mb-8 max-w-xl mx-auto leading-relaxed">
+            <p className="text-base text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
               Tell us what you're craving, and we'll find the perfect restaurant 
-              that matches your vibe using AI-powered recommendations.
+              that matches your vibe using AI-powered Reddit + Google Places recommendations.
             </p>
           </div>
 
@@ -313,7 +334,7 @@ const Index = () => {
       </main>
 
       {/* Footer */}
-      <footer className="mt-16 pb-8 text-center text-gray-500">
+      <footer className="relative z-10 mt-16 pb-8 text-center text-gray-500">
         <p className="text-xs">
           Made with ❤️ for food lovers • Powered by AI and community recommendations
         </p>
