@@ -47,13 +47,16 @@ const Index = () => {
     console.log("Searching for:", searchQuery);
     
     try {
-      const response = await fetch('https://yashrajsomvanshi.app.n8n.cloud/webhook-test/a4e42a34-3a22-4ed2-9b75-bc3f59a0c991', {
+      const response = await fetch('https://yashrajsomvanshi.app.n8n.cloud/webhook/a4e42a34-3a22-4ed2-9b75-bc3f59a0c991', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          query: searchQuery,
+          location: "Bangalore", // Default location, could be made dynamic
+          cuisine: "", // Extract from query or leave empty
+          mood: [searchQuery], // Use the search query as mood
+          priority: ["rating", "reviews"], // Default priorities
           timestamp: new Date().toISOString(),
         }),
       });
