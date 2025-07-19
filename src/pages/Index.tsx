@@ -42,6 +42,28 @@ const Index = () => {
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
     
+    // Check daily search limit
+    let searchCount = parseInt(localStorage.getItem("searchCount")) || 0;
+    let lastReset = parseInt(localStorage.getItem("lastReset")) || Date.now();
+    
+    const now = Date.now();
+    const ONE_DAY = 24 * 60 * 60 * 1000;
+    
+    if (now - lastReset > ONE_DAY) {
+      searchCount = 0;
+      lastReset = now;
+      localStorage.setItem("searchCount", "0");
+      localStorage.setItem("lastReset", now.toString());
+    }
+    
+    if (searchCount >= 3) {
+      alert("You've reached the daily search limit. Please come back tomorrow!");
+      return;
+    }
+    
+    searchCount++;
+    localStorage.setItem("searchCount", searchCount.toString());
+    
     setIsSearching(true);
     setSearchResults(null);
     console.log("Searching for:", searchQuery);
