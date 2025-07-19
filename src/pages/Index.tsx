@@ -174,21 +174,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-warm-50 relative">
-      {/* Grid Background Pattern */}
-      <div 
-        className="absolute inset-0 opacity-20"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(120, 83, 67, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(120, 83, 67, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '24px 24px'
-        }}
-      />
+    <div className="min-h-screen gradient-warm relative">
       
       {/* Header */}
-      <header className="relative z-10 px-6 py-6">
+      <header className="relative z-10 px-6 py-8">
         <nav className="max-w-4xl mx-auto flex items-center justify-center">
           <div className="flex items-center space-x-2">
             <ChefHat className="h-6 w-6 text-black" />
@@ -198,39 +187,39 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <main className="relative z-10 px-6 py-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="animate-fade-in">
-            <h2 className="text-3xl md:text-4xl font-normal text-black mb-4 leading-tight">
+      <main className="relative z-10 px-6 py-12">
+        <div className="max-w-3xl mx-auto text-center space-y-16">
+          <div className="animate-fade-in space-y-8">
+            <h2 className="text-3xl md:text-4xl font-normal text-black leading-tight">
               Find dining spots that
               <span className="block mt-1">match your mood</span>
             </h2>
             
-            <p className="text-base text-gray-700 mb-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base text-gray-700 max-w-2xl mx-auto leading-relaxed">
               Tell us what you're craving, and we'll find the perfect restaurant 
               that matches your vibe using AI-powered Reddit + Google Places recommendations.
             </p>
           </div>
 
           {/* Search Interface */}
-          <div className="animate-slide-up max-w-xl mx-auto mb-8">
-            <Card className="bg-white shadow-sm border border-gray-200">
-              <CardContent className="p-4">
-                <div className="flex flex-col gap-3">
+          <div className="animate-slide-up max-w-xl mx-auto">
+            <Card className="bg-white/95 backdrop-blur-sm shadow-lg border border-white/20">
+              <CardContent className="p-6">
+                <div className="flex flex-col gap-4">
                   <div className="relative">
                     <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                     <Input
                       placeholder="I want a cozy cafe with great coffee in Indiranagar..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 h-10 text-sm border-gray-200 focus:border-gray-400 focus:ring-gray-300"
+                      className="pl-10 h-12 text-sm border-gray-200 focus:border-gray-400 focus:ring-gray-300"
                       onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                     />
                   </div>
                   <Button 
                     onClick={handleSearch}
                     disabled={isSearching}
-                    className="h-10 bg-black hover:bg-gray-800 text-white font-medium rounded-md text-sm"
+                    className="h-12 bg-black hover:bg-gray-800 text-white font-medium rounded-md text-sm shadow-md"
                   >
                     {isSearching ? (
                       <div className="flex items-center gap-2">
@@ -275,19 +264,19 @@ const Index = () => {
 
           {/* Mood Suggestions */}
           {!searchResults && (
-            <div className="animate-slide-up max-w-3xl mx-auto mb-8">
-              <h3 className="text-base font-medium text-black mb-4">
+            <div className="animate-slide-up max-w-3xl mx-auto">
+              <h3 className="text-base font-medium text-black mb-6">
                 What's your dining mood today?
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {moodSuggestions.map((mood, index) => (
                   <Card 
                     key={index}
-                    className="cursor-pointer hover:scale-105 transition-all duration-300 bg-white border border-gray-200 shadow-sm hover:shadow-md"
+                    className="cursor-pointer hover:scale-105 transition-all duration-300 bg-white/95 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl"
                     onClick={() => setSearchQuery(mood.text)}
                   >
-                    <CardContent className="p-3 text-center">
-                      <mood.icon className={`h-6 w-6 mx-auto mb-2 ${mood.color}`} />
+                    <CardContent className="p-4 text-center">
+                      <mood.icon className={`h-6 w-6 mx-auto mb-3 ${mood.color}`} />
                       <p className="text-black font-medium text-xs">{mood.text}</p>
                     </CardContent>
                   </Card>
@@ -298,33 +287,33 @@ const Index = () => {
 
           {/* Features */}
           {!searchResults && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <Sparkles className="h-5 w-5 text-gray-600" />
+                <div className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <Sparkles className="h-6 w-6 text-gray-600" />
                 </div>
-                <h4 className="text-sm font-medium text-black mb-1">AI-Powered Discovery</h4>
-                <p className="text-gray-600 text-xs">
+                <h4 className="text-sm font-medium text-black mb-2">AI-Powered Discovery</h4>
+                <p className="text-gray-600 text-xs leading-relaxed">
                   Our AI understands your mood and finds restaurants that perfectly match your vibe
                 </p>
               </div>
               
               <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <Star className="h-5 w-5 text-gray-600" />
+                <div className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <Star className="h-6 w-6 text-gray-600" />
                 </div>
-                <h4 className="text-sm font-medium text-black mb-1">Reddit + Google Reviews</h4>
-                <p className="text-gray-600 text-xs">
+                <h4 className="text-sm font-medium text-black mb-2">Reddit + Google Reviews</h4>
+                <p className="text-gray-600 text-xs leading-relaxed">
                   Authentic recommendations from real people combined with verified ratings
                 </p>
               </div>
               
               <div className="text-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                <div className="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <MapPin className="h-5 w-5 text-gray-600" />
+                <div className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                  <MapPin className="h-6 w-6 text-gray-600" />
                 </div>
-                <h4 className="text-sm font-medium text-black mb-1">Location-Based</h4>
-                <p className="text-gray-600 text-xs">
+                <h4 className="text-sm font-medium text-black mb-2">Location-Based</h4>
+                <p className="text-gray-600 text-xs leading-relaxed">
                   Discover amazing dining spots in your area or explore new neighborhoods
                 </p>
               </div>

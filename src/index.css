@@ -114,7 +114,13 @@ All colors MUST be HSL.
   }
   
   .gradient-warm {
-    background: linear-gradient(135deg, hsl(28, 50%, 98%) 0%, hsl(28, 40%, 95%) 50%, hsl(28, 35%, 90%) 100%);
+    background: linear-gradient(135deg, 
+      hsl(14, 80%, 95%) 0%,   /* Soft peach */
+      hsl(330, 60%, 92%) 25%, /* Light pink */
+      hsl(24, 70%, 90%) 50%,  /* Warm orange */
+      hsl(340, 55%, 95%) 75%, /* Blush pink */
+      hsl(20, 65%, 93%) 100%  /* Peach cream */
+    );
   }
   
   .gradient-sage {
