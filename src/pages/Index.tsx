@@ -347,7 +347,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="relative z-10 mt-16 pb-8 text-center text-gray-500">
         <p className="text-xs">
-          Made with ❤️ for food lovers • Powered by AI and community recommendations
+          Made with ❤️ by Yashraj • Powered by AI and community recommendations
         </p>
       </footer>
     </div>
